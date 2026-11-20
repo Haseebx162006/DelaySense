@@ -1,0 +1,108 @@
+{
+  "project_name": "DelaySense",
+  "version": "1.0.0",
+  "decision_threshold": 0.45,
+  "risk_thresholds": {
+    "low": 0.35,
+    "medium": 0.65
+  },
+  "raw_required_columns": [
+    "Order Id",
+    "order date (DateOrders)",
+    "Order Item Quantity",
+    "Order Item Total",
+    "Order Item Discount",
+    "Order Item Discount Rate",
+    "Order Item Product Price",
+    "Latitude",
+    "Longitude",
+    "Benefit per order",
+    "Order Item Profit Ratio",
+    "Type",
+    "Shipping Mode",
+    "Order Status",
+    "Category Name",
+    "Customer Segment",
+    "Market",
+    "Order Region",
+    "Order Country",
+    "Department Name",
+    "Customer Country",
+    "Customer State",
+    "Product Card Id",
+    "Days for shipment (scheduled)"
+  ],
+  "display_metadata_columns": [
+    "Order Id",
+    "Customer City",
+    "Customer Country",
+    "Shipping Mode",
+    "order date (DateOrders)",
+    "Order Region"
+  ],
+  "numerical_features": [
+    "Order Item Quantity",
+    "Order Item Total",
+    "Order Item Discount",
+    "Order Item Discount Rate",
+    "Order Item Product Price",
+    "Latitude",
+    "Longitude",
+    "Benefit per order",
+    "order_item_profit_ratio",
+    "order_hour",
+    "order_dayofweek",
+    "order_day",
+    "order_month",
+    "order_year",
+    "order_quarter",
+    "is_weekend",
+    "is_month_end",
+    "order_total_items",
+    "order_total_amount",
+    "order_unique_products",
+    "item_share_of_order",
+    "discount_per_unit",
+    "effective_unit_price",
+    "is_international",
+    "is_same_state",
+    "is_tight_deadline"
+  ],
+  "categorical_features": [
+    "Type",
+    "Shipping Mode",
+    "Order Status",
+    "Category Name",
+    "Customer Segment",
+    "Market",
+    "Order Region",
+    "Order Country",
+    "Department Name",
+    "Customer Country",
+    "Customer State",
+    "Product Card Id",
+    "shipping_route"
+  ],
+  "models": [
+    {
+      "name": "LightGBM",
+      "artifact": "lgb_model.joblib",
+      "input_stream": "X_encoded"
+    },
+    {
+      "name": "CatBoost",
+      "artifact": "cat_model.joblib",
+      "input_stream": "X_cat"
+    },
+    {
+      "name": "XGBoost",
+      "artifact": "xgb_model.joblib",
+      "input_stream": "X_encoded"
+    },
+    {
+      "name": "Meta-Learner",
+      "artifact": "meta_learner.joblib",
+      "input_stream": "X_meta"
+    }
+  ]
+}
