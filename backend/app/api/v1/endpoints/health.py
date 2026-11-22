@@ -4,11 +4,16 @@ from fastapi import APIRouter
 try:
     from app.models.schemas import HealthResponse
 except ImportError:
-    from backend.app.models.schemas import HealthResponse
+    from app.models.schemas import HealthResponse
 
 router = APIRouter()
 
-ARTIFACTS_DIR = Path(__file__).resolve().parent.parent.parent.parent / "model_artifacts"
+_base_path = Path(__file__).resolve()
+ARTIFACTS_DIR = (
+    _base_path.parents[4] / "model_artifacts"
+    if (_base_path.parents[4] / "model_artifacts").exists()
+    else _base_path.parent.parent.parent.parent / "model_artifacts"
+)
 
 
 @router.get("/health", response_model=HealthResponse)

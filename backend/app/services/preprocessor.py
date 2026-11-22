@@ -141,8 +141,15 @@ class DataPreProcessor:
 
         if self.categorical_features:
             if self.encoder is not None:
-                encoded_values = self.encoder.transform(df[self.categorical_features])
-                df_encoded[self.categorical_features] = encoded_values
+                try:
+                    encoded_values = self.encoder.transform(df[self.categorical_features])
+                    df_encoded[self.categorical_features] = encoded_values
+                except Exception:
+                    # Safe category mapping compatible with all NumPy and scikit-learn versions
+                    for i, col in enumerate(self.categorical_features):
+                        if col in df_encoded.columns:
+                            cat_map = {cat: idx for idx, cat in enumerate(self.encoder.categories_[i])}
+                            df_encoded[col] = df_encoded[col].map(lambda x: cat_map.get(x, -1))
             else:
                 for col in self.categorical_features:
                     if col in df_encoded.columns:

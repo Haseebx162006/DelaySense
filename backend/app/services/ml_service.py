@@ -8,7 +8,7 @@ from typing import Dict, Any, List, Optional
 try:
     from app.services.preprocessor import DataPreProcessor
 except ImportError:
-    from backend.app.services.preprocessor import DataPreProcessor
+    from app.services.preprocessor import DataPreProcessor
 
 
 class MlSerivce:
