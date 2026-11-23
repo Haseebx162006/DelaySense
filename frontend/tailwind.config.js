@@ -9,67 +9,87 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Jet Black: Authentic, deep, technical charcoal blacks
+        jet: {
+          950: '#070709',
+          900: '#0c0c0f',
+          850: '#111116',
+          800: '#17171e',
+          750: '#1d1d26',
+          700: '#252530',
+        },
+        // Backward-compatible alias for obsidian
         obsidian: {
-          950: '#050807',
-          900: '#090d0b',
-          850: '#0d1310',
-          800: '#121a16',
-          700: '#1b2721',
-          600: '#26372f',
+          950: '#070709',
+          900: '#0c0c0f',
+          850: '#111116',
+          800: '#17171e',
+          750: '#1d1d26',
+          700: '#252530',
+          600: '#32323f',
         },
-        emerald: {
-          400: '#34d399',
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
-          800: '#065f46',
-          900: '#064e3b',
-          950: '#022c22',
+        // Smoke Gray: Neutral, crisp engineering grays
+        smoke: {
+          50: '#f9f9fb',
+          100: '#f2f2f6',
+          200: '#e4e4e9',
+          300: '#d1d1d8',
+          400: '#9e9ea8',
+          500: '#71717e',
+          600: '#484854',
+          700: '#2c2c36',
+          800: '#1e1e26',
+          900: '#131319',
         },
+        // Backward-compatible alias for sage
         sage: {
-          50: '#f8faf9',
-          100: '#eef3f0',
-          200: '#dae5df',
-          300: '#b8ccc2',
-          400: '#8ba697',
-          500: '#647e70',
+          50: '#f9f9fb',
+          100: '#f2f2f6',
+          200: '#e4e4e9',
+          300: '#d1d1d8',
+          400: '#9e9ea8',
+          500: '#71717e',
+        },
+        // Cherry Red: The signature action and urgency color
+        cherry: {
+          50: '#fff1f2',
+          100: '#ffe4e6',
+          200: '#fecdd3',
+          300: '#fda4af',
+          400: '#fb7185',
+          500: '#f43f5e',
+          600: '#e11d48', // Primary button face
+          700: '#be123c', // Hover button face
+          800: '#9f1239', // Active button face
+          900: '#881337',
+          950: '#4c0519',
+        },
+        // Map legacy emerald tokens to clean smoke/cherry tones
+        emerald: {
+          400: '#d1d1d8',
+          500: '#a1a1aa',
+          600: '#71717e',
+          700: '#484854',
+          800: '#2c2c36',
+          900: '#1e1e26',
+          950: '#131319',
         },
       },
       boxShadow: {
-        'glow-emerald': '0 0 25px -5px rgba(16, 185, 129, 0.35)',
-        'glow-emerald-lg': '0 0 50px -10px rgba(16, 185, 129, 0.45)',
-        'glow-capsule': '0 0 40px -8px rgba(52, 211, 153, 0.28), inset 0 0 20px -5px rgba(52, 211, 153, 0.2)',
-        'glow-card': '0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 1px 1px rgba(16, 185, 129, 0.15)',
-        'glow-card-hover': '0 15px 35px -10px rgba(0, 0, 0, 0.8), 0 0 20px 2px rgba(16, 185, 129, 0.22)',
+        'cherry': '0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(225, 29, 72, 0.4)',
+        'cherry-hover': '0 4px 14px 0 rgba(225, 29, 72, 0.35)',
+        'panel': '0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4)',
+        'panel-raised': '0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7)',
       },
-      animation: {
-        'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'radar': 'radar 4s linear infinite',
-        'glow': 'glow 4s ease-in-out infinite alternate',
-      },
-      keyframes: {
-        pulseSubtle: {
-          '0%, 100%': { opacity: '1', transform: 'scale(1)' },
-          '50%': { opacity: '0.85', transform: 'scale(1.02)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
-        },
-        radar: {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
-        },
-        glow: {
-          '0%': { filter: 'drop-shadow(0 0 15px rgba(16, 185, 129, 0.25))' },
-          '100%': { filter: 'drop-shadow(0 0 35px rgba(52, 211, 153, 0.55))' },
-        },
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
-        'emerald-dark-gradient': 'linear-gradient(180deg, #0d1310 0%, #050807 100%)',
+      fontFamily: {
+        sans: [
+          'Inter',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'Roboto',
+          'sans-serif',
+        ],
       },
     },
   },

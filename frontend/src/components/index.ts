@@ -5,8 +5,9 @@ export * from './SingleOrderSimulator';
 export * from './ExportButton';
 export * from './Navbar';
 export * from './Hero';
-export * from './PartnerLogos';
-export * from './SolutionsGrid';
+export * from './CorridorMatrix';
+export * from './DelayStressTester';
+export * from './DisruptionEconomics';
+export * from './ModelArchitecture';
 export * from './CaseStudies';
 export * from './Footer';
-

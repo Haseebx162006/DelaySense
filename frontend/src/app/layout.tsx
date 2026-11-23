@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'DelaySense™ — AI Supply Chain Precision & Risk Engine',
-  description: 'Enterprise AI-powered supply chain delay prediction and risk analytics platform.',
+  title: 'DelaySense — Freight Disruption & Delay Risk Engine',
+  description:
+    'Enterprise machine learning calibrated on multi-modal logistics corridors to calculate shipment delay risk and protect delivery SLAs.',
 };
 
 export default function RootLayout({
@@ -13,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className="bg-obsidian-950 text-slate-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-200 overflow-x-hidden min-h-screen">
+      <body className="bg-jet-950 text-smoke-100 antialiased selection:bg-cherry-600/30 selection:text-white overflow-x-hidden min-h-screen">
         {children}
       </body>
     </html>

@@ -26,11 +26,9 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 
   const handleExportCsv = () => {
     if (!hasData) return;
-
     setIsExporting(true);
 
     try {
-      // CSV Column Headers
       const headers = [
         'Order ID',
         'Delay Status',
@@ -43,7 +41,6 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
         'Order Region',
       ];
 
-      // Format Rows
       const rows = orders.map((order) => {
         const isDelayedText = order.is_delayed === 1 ? 'Delayed' : 'On-Time';
         const probFormatted = `${(order.delay_probability * 100).toFixed(1)}%`;
@@ -66,8 +63,6 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       });
 
       const csvContent = [headers.join(','), ...rows].join('\r\n');
-
-      // Create Blob with UTF-8 BOM for Microsoft Excel compatibility
       const blob = new Blob(['\uFEFF' + csvContent], {
         type: 'text/csv;charset=utf-8;',
       });
@@ -99,27 +94,27 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       onClick={handleExportCsv}
       disabled={isButtonDisabled}
       className={cn(
-        'inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium border transition-all duration-200 select-none',
+        'inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors duration-150 select-none',
         hasExported
-          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40 shadow-glow-emerald'
+          ? 'bg-smoke-800 text-smoke-100 border-smoke-600'
           : hasData
-          ? 'bg-obsidian-800 text-white border-white/10 hover:bg-obsidian-700 hover:border-emerald-500/30 hover:text-emerald-300 shadow-sm'
-          : 'bg-obsidian-900/40 text-sage-500 border-white/5 cursor-not-allowed opacity-50',
+          ? 'bg-smoke-900 text-smoke-200 border-smoke-750 hover:bg-smoke-800 hover:text-white'
+          : 'bg-jet-900 text-smoke-500 border-smoke-850 cursor-not-allowed opacity-50',
         className
       )}
-      title={hasData ? `Export ${orders.length} predictions to CSV` : 'No predictions available to export'}
+      title={hasData ? `Export ${orders.length} predictions to CSV` : 'No predictions available'}
     >
       {hasExported ? (
         <>
-          <Check className="w-3.5 h-3.5 text-emerald-400" />
+          <Check className="w-3.5 h-3.5 text-smoke-200" />
           <span>Exported CSV</span>
         </>
       ) : (
         <>
-          <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Export Results to CSV</span>
+          <Download className="w-3.5 h-3.5 text-smoke-400" />
+          <span>Export CSV</span>
           {hasData && (
-            <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-obsidian-950 font-mono text-sage-400">
+            <span className="text-[10px] px-1.5 py-0.2 rounded bg-smoke-800 font-mono text-smoke-300">
               {orders.length}
             </span>
           )}
