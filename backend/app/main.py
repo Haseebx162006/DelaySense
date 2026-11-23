@@ -9,8 +9,10 @@ origin_api_router = APIRouter()
 
 app = FastAPI(title="ML Model API", version="1.0.0")
 
+# Support both /api/v1/... and direct root /... endpoints (prevents 404 if /api/v1 is omitted)
 origin_api_router.include_router(api_router, prefix="/api/v1")
 app.include_router(origin_api_router)
+app.include_router(api_router)
 
 
 cors_origins_env = os.getenv("CORS_ORIGINS", "")
