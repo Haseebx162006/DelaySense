@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from fastapi import APIRouter
 
@@ -9,11 +10,15 @@ except ImportError:
 router = APIRouter()
 
 _base_path = Path(__file__).resolve()
-ARTIFACTS_DIR = (
-    _base_path.parents[4] / "model_artifacts"
-    if (_base_path.parents[4] / "model_artifacts").exists()
-    else _base_path.parent.parent.parent.parent / "model_artifacts"
-)
+_env_artifacts = os.getenv("MODEL_ARTIFACTS_DIR")
+if _env_artifacts and Path(_env_artifacts).exists():
+    ARTIFACTS_DIR = Path(_env_artifacts)
+else:
+    ARTIFACTS_DIR = (
+        _base_path.parents[4] / "model_artifacts"
+        if (_base_path.parents[4] / "model_artifacts").exists()
+        else _base_path.parent.parent.parent.parent / "model_artifacts"
+    )
 
 
 @router.get("/health", response_model=HealthResponse)

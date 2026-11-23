@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, APIRouter
 from app.api.v1.api import api_router
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,16 +13,20 @@ origin_api_router.include_router(api_router, prefix="/api/v1")
 app.include_router(origin_api_router)
 
 
-origins = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:3001",
-    "http://127.0.0.1:3001",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-    "http://localhost",
-    "*",
-]
+cors_origins_env = os.getenv("CORS_ORIGINS", "")
+if cors_origins_env:
+    origins = [orig.strip() for orig in cors_origins_env.split(",") if orig.strip()]
+else:
+    origins = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3001",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+        "http://localhost",
+        "*",
+    ]
 
 app.add_middleware(
     CORSMiddleware,
